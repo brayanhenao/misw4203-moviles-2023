@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.albumList,
-                R.id.artistList,
+                R.id.performerList,
                 R.id.collectorList,
             ),
             drawerLayout,
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.albumList -> supportActionBar?.setTitle(R.string.menu_album_list)
-            R.id.artistList -> supportActionBar?.setTitle(R.string.menu_artist_list)
+            R.id.performerList -> supportActionBar?.setTitle(R.string.menu_performer_list)
             R.id.collectorList -> supportActionBar?.setTitle(R.string.menu_collector_list)
         }
         return super.onOptionsItemSelected(item)
