@@ -9,7 +9,7 @@ class TrackAdapter(private val trackList: List<TrackModel>) :
     RecyclerView.Adapter<TrackAdapter.TrackViewHolder>() {
 
     inner class TrackViewHolder(private val binding: TrackRowBinding) :
-        RecyclerView.ViewHolder(binding.root) {}
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
         val binding = TrackRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)

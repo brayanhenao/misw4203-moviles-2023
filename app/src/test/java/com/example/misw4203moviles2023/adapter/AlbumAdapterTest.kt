@@ -2,8 +2,6 @@ import android.content.Context
 import android.widget.FrameLayout
 import androidx.test.core.app.ApplicationProvider
 import com.example.misw4203moviles2023.adapter.AlbumAdapter
-import com.example.misw4203moviles2023.adapter.OnItemClickListener
-import com.example.misw4203moviles2023.data.model.AlbumModel
 import com.example.misw4203moviles2023.test.TestApplication
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsInstanceOf.instanceOf
@@ -14,7 +12,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
-@Config(application= TestApplication::class)
+@Config(application = TestApplication::class)
 @RunWith(RobolectricTestRunner::class)
 class AlbumAdapterTest {
 
@@ -32,7 +30,7 @@ class AlbumAdapterTest {
                 "2023-01-01",
                 "Description 1",
                 "Rock",
-                "Record Label 1"
+                "Record Label 1",
             ),
             mockAlbumModel(
                 2,
@@ -41,8 +39,8 @@ class AlbumAdapterTest {
                 "2023-02-01",
                 "Description 2",
                 "Pop",
-                "Record Label 2"
-            )
+                "Record Label 2",
+            ),
         )
         adapter = AlbumAdapter(context, albumList)
     }
@@ -71,5 +69,3 @@ class AlbumAdapterTest {
         assertEquals(adapter.itemCount, 2)
     }
 }
-
-
