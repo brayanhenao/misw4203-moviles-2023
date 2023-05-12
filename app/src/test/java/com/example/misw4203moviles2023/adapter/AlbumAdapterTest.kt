@@ -1,8 +1,10 @@
+package com.example.misw4203moviles2023.adapter
+
 import android.content.Context
 import android.widget.FrameLayout
 import androidx.test.core.app.ApplicationProvider
-import com.example.misw4203moviles2023.adapter.AlbumAdapter
 import com.example.misw4203moviles2023.test.TestApplication
+import mockAlbumModel
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsInstanceOf.instanceOf
 import org.junit.Assert.assertEquals

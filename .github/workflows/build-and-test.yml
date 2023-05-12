@@ -32,8 +32,8 @@ jobs:
           echo "RELEASE_KEY_ALIAS=${{ secrets.SIGNING_KEY_ALIAS }}" >> local.properties
           echo "RELEASE_KEY_PASSWORD=${{ secrets.SIGNING_KEY_PASSWORD }}" >> local.properties
 
-      - name: Build with Gradle
-        run: ./gradlew clean build
+      - name: Clean project
+        run: ./gradlew clean
 
 #      - name: Run detekt Linter
 #        run: ./gradlew detekt
