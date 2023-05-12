@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.misw4203moviles2023.R
 import com.example.misw4203moviles2023.ui.viewModel.CollectorDetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CollectorDetail : Fragment() {
 
     companion object {

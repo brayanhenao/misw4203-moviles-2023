@@ -15,13 +15,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.misw4203moviles2023.R
 import com.example.misw4203moviles2023.adapter.AlbumAdapter
 import com.example.misw4203moviles2023.adapter.OnItemClickListener
-import com.example.misw4203moviles2023.data.model.AlbumModel
 import com.example.misw4203moviles2023.databinding.FragmentAlbumListBinding
-import com.example.misw4203moviles2023.ui.viewModel.AlbumDetailViewModel
+import com.example.misw4203moviles2023.domain.album.model.Album
 import com.example.misw4203moviles2023.ui.viewModel.AlbumListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AlbumList(private val viewModel: AlbumListViewModel? = null) : Fragment() {
-
     companion object {
         fun newInstance() = AlbumList()
     }
@@ -63,7 +63,7 @@ class AlbumList(private val viewModel: AlbumListViewModel? = null) : Fragment() 
         _viewModel.albumModel.observe(viewLifecycleOwner) {
             albumAdapter = AlbumAdapter(requireContext(), it ?: emptyList())
             albumAdapter.setOnItemClickListener(object : OnItemClickListener {
-                override fun onItemClick(position: Int, album: AlbumModel) {
+                override fun onItemClick(position: Int, album: Album) {
                     AlbumListDirections.actionAlbumListToAlbumDetail(album.id).also { action ->
                         view.findNavController().navigate(action)
                     }

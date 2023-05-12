@@ -17,9 +17,10 @@ import com.example.misw4203moviles2023.R
 import com.example.misw4203moviles2023.adapter.TrackAdapter
 import com.example.misw4203moviles2023.databinding.FragmentAlbumDetailBinding
 import com.example.misw4203moviles2023.ui.viewModel.AlbumDetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AlbumDetail(private val viewModel: AlbumDetailViewModel? = null) : Fragment() {
-
     companion object {
         fun newInstance() = AlbumDetail()
     }

@@ -4,8 +4,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.misw4203moviles2023.data.model.TrackModel
 import com.example.misw4203moviles2023.databinding.TrackRowBinding
+import com.example.misw4203moviles2023.domain.album.model.Track
 
-class TrackAdapter(private val trackList: List<TrackModel>) :
+class TrackAdapter(private val trackList: List<Track>) :
     RecyclerView.Adapter<TrackAdapter.TrackViewHolder>() {
 
     inner class TrackViewHolder(private val binding: TrackRowBinding) :

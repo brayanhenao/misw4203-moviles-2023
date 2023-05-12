@@ -4,12 +4,9 @@ import com.example.misw4203moviles2023.core.RetrofitHelper
 import com.example.misw4203moviles2023.data.model.AlbumModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class AlbumService(apiClient: AlbumApiClient? = null) {
-    private val retrofit = RetrofitHelper.getRetrofit()
-    private val defaultApiClient = retrofit.create(AlbumApiClient::class.java)
-    private val apiClient = apiClient ?: defaultApiClient
-
+class AlbumService @Inject constructor (private val apiClient:AlbumApiClient) {
     suspend fun getAlbums(): List<AlbumModel> {
         return withContext(Dispatchers.IO) {
             val response = apiClient.getAllAlbums()
