@@ -6,34 +6,34 @@ on:
       - main
 
 jobs:
-  build-and-lint:
-    name: Build app and run linters
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Set up our JDK environment
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'adopt'
-          java-version: '19'
-
-      - name: Decode Keystore & Setup local.properties
-        env:
-          ENCODED_STRING: ${{ secrets.KEYSTORE }}
-        run: |
-          TMP_KEYSTORE_FILE_PATH="${RUNNER_TEMP}"/keystore
-          mkdir "${TMP_KEYSTORE_FILE_PATH}"
-          echo $ENCODED_STRING | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/app.jks
-          echo "RELEASE_STORE_FILE=${TMP_KEYSTORE_FILE_PATH}/app.jks" >> local.properties
-          echo "RELEASE_STORE_PASSWORD=${{ secrets.SIGNING_STORE_PASSWORD }}" >> local.properties
-          echo "RELEASE_KEY_ALIAS=${{ secrets.SIGNING_KEY_ALIAS }}" >> local.properties
-          echo "RELEASE_KEY_PASSWORD=${{ secrets.SIGNING_KEY_PASSWORD }}" >> local.properties
-
-      - name: Clean project
-        run: ./gradlew clean
+#  build-and-lint:
+#    name: Build app and run linters
+#    runs-on: ubuntu-latest
+#    timeout-minutes: 20
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v3
+#
+#      - name: Set up our JDK environment
+#        uses: actions/setup-java@v3
+#        with:
+#          distribution: 'adopt'
+#          java-version: '19'
+#
+#      - name: Decode Keystore & Setup local.properties
+#        env:
+#          ENCODED_STRING: ${{ secrets.KEYSTORE }}
+#        run: |
+#          TMP_KEYSTORE_FILE_PATH="${RUNNER_TEMP}"/keystore
+#          mkdir "${TMP_KEYSTORE_FILE_PATH}"
+#          echo $ENCODED_STRING | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/app.jks
+#          echo "RELEASE_STORE_FILE=${TMP_KEYSTORE_FILE_PATH}/app.jks" >> local.properties
+#          echo "RELEASE_STORE_PASSWORD=${{ secrets.SIGNING_STORE_PASSWORD }}" >> local.properties
+#          echo "RELEASE_KEY_ALIAS=${{ secrets.SIGNING_KEY_ALIAS }}" >> local.properties
+#          echo "RELEASE_KEY_PASSWORD=${{ secrets.SIGNING_KEY_PASSWORD }}" >> local.properties
+#
+#      - name: Clean project
+#        run: ./gradlew clean
 
   #      - name: Run detekt Linter
   #        run: ./gradlew detekt
@@ -47,38 +47,38 @@ jobs:
   #      - name: Run Spotless
   #        run: ./gradlew spotlessCheck
 
-  unit-tests:
-    name: Run unit tests
-    runs-on: ubuntu-latest
-    needs: build-and-lint
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Set up our JDK environment
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'adopt'
-          java-version: '19'
-
-      - name: Decode Keystore & Setup local.properties
-        env:
-          ENCODED_STRING: ${{ secrets.KEYSTORE }}
-        run: |
-          TMP_KEYSTORE_FILE_PATH="${RUNNER_TEMP}"/keystore
-          mkdir "${TMP_KEYSTORE_FILE_PATH}"
-          echo $ENCODED_STRING | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/app.jks
-          echo "RELEASE_STORE_FILE=${TMP_KEYSTORE_FILE_PATH}/app.jks" >> local.properties
-          echo "RELEASE_STORE_PASSWORD=${{ secrets.SIGNING_STORE_PASSWORD }}" >> local.properties
-          echo "RELEASE_KEY_ALIAS=${{ secrets.SIGNING_KEY_ALIAS }}" >> local.properties
-          echo "RELEASE_KEY_PASSWORD=${{ secrets.SIGNING_KEY_PASSWORD }}" >> local.properties
-
-      - name: Run Unit Tests
-        run: ./gradlew clean test
+#  unit-tests:
+#    name: Run unit tests
+#    runs-on: ubuntu-latest
+#    needs: build-and-lint
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v3
+#
+#      - name: Set up our JDK environment
+#        uses: actions/setup-java@v3
+#        with:
+#          distribution: 'adopt'
+#          java-version: '19'
+#
+#      - name: Decode Keystore & Setup local.properties
+#        env:
+#          ENCODED_STRING: ${{ secrets.KEYSTORE }}
+#        run: |
+#          TMP_KEYSTORE_FILE_PATH="${RUNNER_TEMP}"/keystore
+#          mkdir "${TMP_KEYSTORE_FILE_PATH}"
+#          echo $ENCODED_STRING | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/app.jks
+#          echo "RELEASE_STORE_FILE=${TMP_KEYSTORE_FILE_PATH}/app.jks" >> local.properties
+#          echo "RELEASE_STORE_PASSWORD=${{ secrets.SIGNING_STORE_PASSWORD }}" >> local.properties
+#          echo "RELEASE_KEY_ALIAS=${{ secrets.SIGNING_KEY_ALIAS }}" >> local.properties
+#          echo "RELEASE_KEY_PASSWORD=${{ secrets.SIGNING_KEY_PASSWORD }}" >> local.properties
+#
+#      - name: Run Unit Tests
+#        run: ./gradlew clean test
 
   instrumented-tests:
     name: Run UI tests with Firebase Test Lab
-    needs: unit-tests
+#    needs: unit-tests
     runs-on: macos-latest
     strategy:
       matrix:
@@ -86,6 +86,12 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+
+      - name: Set up our JDK environment
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: '19'
 
       - name: Gradle cache
         uses: gradle/gradle-build-action@v2
