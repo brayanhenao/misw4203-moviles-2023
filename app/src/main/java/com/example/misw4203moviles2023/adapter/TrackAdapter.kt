@@ -9,7 +9,13 @@ class TrackAdapter(private val trackList: List<TrackModel>) :
     RecyclerView.Adapter<TrackAdapter.TrackViewHolder>() {
 
     inner class TrackViewHolder(private val binding: TrackRowBinding) :
-        RecyclerView.ViewHolder(binding.root)
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(track: TrackModel) {
+            binding.trackName.text = track.name
+            binding.trackDuration.text = track.duration
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
         val binding = TrackRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,7 +23,8 @@ class TrackAdapter(private val trackList: List<TrackModel>) :
     }
 
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
-        throw NotImplementedError()
+        val track = trackList[position]
+        holder.bind(track)
     }
 
     override fun getItemCount() = trackList.size
